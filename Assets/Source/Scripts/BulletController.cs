@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-    float damage;
+    public GameObject playerOwner;
+    int damage = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,14 @@ public class BulletController : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if(collision.gameObject.tag == "Player" &&
+            collision.gameObject != playerOwner)
+        {
+            collision.gameObject.GetComponent<health>().TakeDamage(damage);
+            Destroy(this.gameObject);
+            Debug.Log("damaged, health left: " + collision.gameObject.GetComponent<health>().currentHealth);
+        }
     }
 }
