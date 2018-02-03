@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     {
         UpdateCooldownTimer();
         UpdateMovement();
-        UpdateShooting();
+        //UpdateShooting();
     }
 
     void UpdateShooting()
@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour {
 
     void UpdateMovement()
     {
-        this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
+        //this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
+        this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX), GamePad.GetAxis(CAxis.LY), 0) * this.moveSpeed;
     }
 
     void UpdateCooldownTimer()
