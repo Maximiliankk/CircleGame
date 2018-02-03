@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/Users/maxim/Documents/GitHub/MedProcedures/Assets/Scenes/FFMtesting.unity
+  isLoaded: 1
+  isActive: 1
