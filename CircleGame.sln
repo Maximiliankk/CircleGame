@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio for Mac
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleGame", "CircleGame.csproj", "{E4DC76AC-6895-B937-17DE-5348D39C2892}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleGame.Editor", "CircleGame.Editor.csproj", "{CCC8DB7D-2812-7622-313B-DFCA8591B5BA}"
