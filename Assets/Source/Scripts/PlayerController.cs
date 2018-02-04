@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
     BulletController.BulletType bulletType;
     Color bulletColor;
 
+    public float default_reticule_scale = 0.085f;
+    public float firing_reticule_scale = .04f;
+
     static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
     // each player has an id
@@ -134,12 +137,12 @@ public class PlayerController : MonoBehaviour {
             //this.gameObject.GetComponent<Transform>().position -= c;
         }
 
-        const float default_reticule_scale = 0.085f;
-        const float firing_reticule_scale = 0.04f;
+        //default_reticule_scale = 0.085f;
+        //firing_reticule_scale = .04f;
 
         Vector3 aim_direction = lastDirection.normalized;
-        reticule.transform.localPosition = aim_direction * 0.2f;
-        reticule.transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
+        reticule.transform.localPosition = aim_direction * 20f;
+        reticule.transform.rotation = QuatFromBasis(aim_direction, Skew(aim_direction));
 
         SpriteRenderer sprite = reticule.GetComponent<SpriteRenderer>();
 
