@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
     Vector3 lastDirection;
     PlayerIndex carbonInputId;
     static int globalId = 1;
+    static System.Random random = new System.Random();
+    BulletController.BulletType bulletType;
 
     // each player has an id
     static int s_player_id = 0;
@@ -24,7 +26,9 @@ public class PlayerController : MonoBehaviour {
         carbonInputId = (PlayerIndex)globalId;
         globalId += 1;
         player_id = s_player_id++;
-	}
+
+        bulletType = (BulletController.BulletType)random.Next((int)BulletController.BulletType.Max);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour {
             bul.transform.position = this.transform.position + v.normalized * 0.75f;
             bul.GetComponent<Renderer>().material.color = Color.green;
             bul.GetComponent<BulletController>().playerOwner = this.gameObject;
+            bul.GetComponent<BulletController>().bulletType = bulletType;
 
             //bul.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             Rigidbody2D rb = bul.GetComponent<Rigidbody2D>();
