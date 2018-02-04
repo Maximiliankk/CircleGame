@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
     static int globalId = 1;
     static System.Random random = new System.Random();
     BulletController.BulletType bulletType;
+    Color bulletColor;
+
+    static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
     SittingPot last_pot_touched = null;
     bool holding_pot = false;
@@ -23,9 +26,11 @@ public class PlayerController : MonoBehaviour {
     int player_id;
 
     float cooldown = 0;
+    private Rigidbody2D rb;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody2D>();
         carbonInputId = (PlayerIndex)globalId;
         globalId += 1;
         player_id = s_player_id++;
@@ -145,7 +150,7 @@ public class PlayerController : MonoBehaviour {
             lastFireDirection = v;
             GameObject bul = GameObject.Instantiate(bulletPrefab);
             bul.transform.position = this.transform.position + v.normalized * 0.75f;
-            bul.GetComponent<Renderer>().material.color = Color.green;
+            bul.GetComponent<Renderer>().material.color = colors[(int)carbonInputId - 1];
             bul.GetComponent<BulletController>().playerOwner = this.gameObject;
             bul.GetComponent<BulletController>().bulletType = bulletType;
 
@@ -187,7 +192,20 @@ public class PlayerController : MonoBehaviour {
     void UpdateMovement()
     {
         //this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
-        this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed;
+        //this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed;
+
+        rb.AddForce(new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed);
+        //rb.AddForce(-Vector3.right * moveSpeed * GamePad.GetAxis(CAxis.LX));
+        //rb.AddForce(-Vector3.up * moveSpeed * GamePad.GetAxis(CAxis.LY));
+        //rb.AddForce(Vector3.right * moveSpeed * GamePad.GetAxis(CAxis.LX));
+
+        if (player_id == 0)
+        {
+            if (Input.GetKey(KeyCode.W)) rb.AddForce(Vector3.up * moveSpeed);
+            if (Input.GetKey(KeyCode.A)) rb.AddForce(-Vector3.right * moveSpeed);
+            if (Input.GetKey(KeyCode.S)) rb.AddForce(-Vector3.up * moveSpeed);
+            if (Input.GetKey(KeyCode.D)) rb.AddForce(Vector3.right * moveSpeed);
+        }
     }
 
     void UpdateCooldownTimer()

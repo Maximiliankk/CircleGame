@@ -47,12 +47,12 @@ public class BulletController : MonoBehaviour {
 
     private void FastBullet()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity *= 1.01f;
+        GetComponent<Rigidbody2D>().velocity *= 1.01f;
     }
 
     private void RandomBullet()
     {
-        if (random.Next(0, 10) % 3 != 0)
+        if (random.Next(0, 13) % 3 != 0)
         {
             return;
         }
@@ -61,8 +61,8 @@ public class BulletController : MonoBehaviour {
         var directonX = random.Next(-10, 10) / 100.0f;
         var directonY = random.Next(-10, 10) / 100.0f;
 
-        var trans = gameObject.GetComponent<Transform>();
-        var rigid = gameObject.GetComponent<Rigidbody2D>();
+        var trans = GetComponent<Transform>();
+        var rigid = GetComponent<Rigidbody2D>();
 
         if (trans.localScale.x < .5f)
         {
@@ -85,7 +85,7 @@ public class BulletController : MonoBehaviour {
         }
 
         size += .05f * sizeDir;
-        var trans = this.gameObject.GetComponent<Transform>();
+        var trans = GetComponent<Transform>();
         trans.localScale = new Vector3(size, size, size);
     }
 
@@ -94,6 +94,7 @@ public class BulletController : MonoBehaviour {
         SizeChange,
         Fast,
         Random,
+        Wave,
 
         // don't add values after this
         Max
