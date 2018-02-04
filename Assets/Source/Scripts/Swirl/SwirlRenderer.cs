@@ -26,6 +26,7 @@ public class SwirlRenderer : MonoBehaviour {
     {
         affectedRigidbodies = new List<Rigidbody2D>();
         rb2d = GetComponentInParent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         rb2d.velocity = Vector2.zero;
         activated = false;
         BeginSwirl();
@@ -45,12 +46,14 @@ public class SwirlRenderer : MonoBehaviour {
 
     IEnumerator StartSwirlCoroutine()
     {
-        float swirlRadius = 0;
+        float swirlAngle = 0;
         activated = true;
-        while (swirlRadius < swirlMaxAngle)
+        rb2d.velocity = Vector2.zero;
+
+        while (swirlAngle < swirlMaxAngle)
         {
-            swirlRadius = Mathf.Min(swirlMaxAngle, swirlRadius + swirlAngleDelta * Time.deltaTime);
-            mat.SetFloat("_Angle", swirlRadius);
+            swirlAngle = Mathf.Min(swirlMaxAngle, swirlAngle + swirlAngleDelta * Time.deltaTime);
+            mat.SetFloat("_Angle", swirlAngle);
             yield return null;
         }
 
@@ -69,7 +72,6 @@ public class SwirlRenderer : MonoBehaviour {
         }
 
         activated = false;
-        rb2d.velocity = Vector2.zero;
         Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
