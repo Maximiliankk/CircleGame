@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     BulletController.BulletType bulletType;
     Color bulletColor;
 
+    public GameObject thrown_pot_prefab;
+
     static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
     SittingPot last_pot_touched = null;
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour {
 
     void UpdatePot()
     {
-        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E))
+        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player picked up the fucking pot");
             last_pot_touched.DeleteYourselfThePot();
@@ -88,11 +90,19 @@ public class PlayerController : MonoBehaviour {
             held_pot.SetActive(true);
         }
 
-        else if (holding_pot && Input.GetKeyDown(KeyCode.E))
+        else if (holding_pot && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player throws the fucking pot");
             holding_pot = false;
             held_pot.SetActive(false);
+
+            GameObject thrown_pot = Instantiate(thrown_pot_prefab);
+            thrown_pot.transform.position = held_pot.transform.position;
+            thrown_pot.transform.rotation = held_pot.transform.rotation;
+            Rigidbody2D body = thrown_pot.GetComponent<Rigidbody2D>();
+            Vector2 vel = GetComponent<Rigidbody2D>().velocity;
+            Vector3 newVel = new Vector3(vel.x, vel.y, 0) + lastDirection.normalized * 20.0f;
+            body.velocity += new Vector2(newVel.x, newVel.y);
         }
     }
 
