@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public GameObject bulletPrefab;
+    public GameObject reticule;
     Weapon w;
     public float moveSpeed = 100;
     Vector3 lastFireDirection;
@@ -38,9 +39,9 @@ public class PlayerController : MonoBehaviour {
 
         // so first player can use wasd and space to play
         bool is_first_player = player_id == 0;
-        if (Input.GetKeyDown(KeyCode.Space) && is_first_player)
+        if (Input.GetKey(KeyCode.Space) && is_first_player)
         {
-            v.Set(0, 0, 0);
+            v = Vector3.zero;
 
             if (Input.GetKey(KeyCode.W))
             {
@@ -61,11 +62,17 @@ public class PlayerController : MonoBehaviour {
             {
                 v += new Vector3(1, 0, 0);
             }
+
+            if (v.magnitude < 0.1)
+            {
+                v = lastFireDirection;
+            }
         }
 
         if (cooldown <= 0 &&
             v.magnitude > 0.1)
         {
+            lastFireDirection = v;
             GameObject bul = GameObject.Instantiate(bulletPrefab);
             bul.transform.position = this.transform.position + v.normalized * 0.75f;
             bul.GetComponent<Renderer>().material.color = Color.green;
