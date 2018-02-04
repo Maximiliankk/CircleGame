@@ -6,18 +6,48 @@ public class SwirlRenderer : MonoBehaviour {
 
     public Material mat;
     public CircleCollider2D circleCollider;
+
     public float swirlPullMultiplier;
     public float deltaAngularVelocity;
 
+    public Vector2 swirlLifetimeRange;
+    public Vector2 timeBetweenSpawnRange;
+
+    public bool activated;
+    public float swirlSpeed;
+
     List<Rigidbody2D> affectedRigidbodies;
+    Rigidbody2D rb2d;
 
     void Awake ()
     {
         affectedRigidbodies = new List<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
+        activated = false;
+        BeginSwirl();
+        // Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
+    }
+
+    void BeginSwirl()
+    {
+        rb2d.velocity = Random.insideUnitCircle * swirlSpeed;
+        activated = true;
+        Invoke("EndSwirl", Random.Range(swirlLifetimeRange.x, swirlLifetimeRange.y));
+    }
+
+    void EndSwirl()
+    {
+        activated = false;
+        Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
     void Update()
     {
+        if (!activated)
+        {
+            return;
+        }
+
         Vector2 pos = Camera.main.WorldToViewportPoint(transform.position);
         mat.SetVector("_Center", new Vector4(pos.x, pos.y));
 

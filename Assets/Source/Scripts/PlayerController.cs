@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour {
 
     static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
+    SittingPot last_pot_touched = null;
+    bool holding_pot = false;
+
     // each player has an id
     static int s_player_id = 0;
     int player_id;
@@ -44,6 +47,36 @@ public class PlayerController : MonoBehaviour {
         UpdateCooldownTimer();
         UpdateMovement();
         UpdateShooting();
+        UpdatePot();
+    }
+
+    public void PlayerOnEnterPot(SittingPot pot)
+    {
+        last_pot_touched = pot;
+    }
+
+    public void PlayerOnExitPot(SittingPot pot)
+    {
+        if (last_pot_touched == pot)
+        {
+            last_pot_touched = null;
+        }
+    }
+
+    void UpdatePot()
+    {
+        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("player picked up the fucking pot");
+            last_pot_touched.DeleteYourselfThePot();
+            holding_pot = true;
+        }
+
+        else if (holding_pot && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("player throws the fucking pot");
+            holding_pot = false;
+        }
     }
 
     static Vector3 Skew(Vector3 axis)
