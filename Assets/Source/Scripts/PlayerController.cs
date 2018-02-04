@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
     BulletController.BulletType bulletType;
     Color bulletColor;
 
+    public float default_reticule_scale = 0.085f;
+    public float firing_reticule_scale = .04f;
+
     static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
     SittingPot last_pot_touched = null;
