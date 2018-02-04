@@ -16,28 +16,60 @@ public class SwirlRenderer : MonoBehaviour {
     public bool activated;
     public float swirlSpeed;
 
+    public float swirlMaxAngle;
+    public float swirlAngleDelta;
+
     List<Rigidbody2D> affectedRigidbodies;
     Rigidbody2D rb2d;
 
     void Awake ()
     {
         affectedRigidbodies = new List<Rigidbody2D>();
-        rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponentInParent<Rigidbody2D>();
+        rb2d.velocity = Vector2.zero;
         activated = false;
         BeginSwirl();
+        mat.SetFloat("_Angle", 0);
         // Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
     void BeginSwirl()
     {
-        rb2d.velocity = Random.insideUnitCircle * swirlSpeed;
-        activated = true;
-        Invoke("EndSwirl", Random.Range(swirlLifetimeRange.x, swirlLifetimeRange.y));
+        StartCoroutine(StartSwirlCoroutine());
     }
 
     void EndSwirl()
     {
+        StartCoroutine(EndSwirlCoroutine());
+    }
+
+    IEnumerator StartSwirlCoroutine()
+    {
+        float swirlRadius = 0;
+        activated = true;
+        while (swirlRadius < swirlMaxAngle)
+        {
+            swirlRadius = Mathf.Min(swirlMaxAngle, swirlRadius + swirlAngleDelta * Time.deltaTime);
+            mat.SetFloat("_Angle", swirlRadius);
+            yield return null;
+        }
+
+        rb2d.velocity = Random.insideUnitCircle.normalized * swirlSpeed;
+        Invoke("EndSwirl", Random.Range(swirlLifetimeRange.x, swirlLifetimeRange.y));
+    }
+
+    IEnumerator EndSwirlCoroutine ()
+    {
+        float swirlRadius = swirlMaxAngle;
+        while (swirlRadius > 0)
+        {
+            swirlRadius = Mathf.Max(0, swirlRadius - swirlAngleDelta * Time.deltaTime);
+            mat.SetFloat("_Angle", swirlRadius);
+            yield return null;
+        }
+
         activated = false;
+        rb2d.velocity = Vector2.zero;
         Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
