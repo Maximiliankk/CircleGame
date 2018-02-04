@@ -8,25 +8,30 @@ public class BulletController : MonoBehaviour {
     int damage = 10;
     float size = 1;
     short sizeDir = 1;
+    public BulletType bulletType;
+    System.Random random;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        random = new System.Random();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (size >= 3)
+		switch (bulletType)
         {
-            sizeDir = -1;
+            case BulletType.SizeChange:
+                ChangeSize();
+                break;
+            case BulletType.Fast:
+                FastBullet();
+                break;
+            case BulletType.Random:
+                RandomBullet();
+                break;
+            default:
+                break;
         }
-        else if (size <= .5)
-        {
-            sizeDir = 1;
-        }
-
-        size += .05f * sizeDir;
-        var trans = this.gameObject.GetComponent<Transform>();
-        trans.localScale = new Vector3(size, size, size);
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -38,5 +43,59 @@ public class BulletController : MonoBehaviour {
             Destroy(this.gameObject);
             Debug.Log("damaged, health left: " + collision.gameObject.GetComponent<health>().currentHealth);
         }
+    }
+
+    private void FastBullet()
+    {
+        gameObject.GetComponent<Rigidbody2D>().velocity *= 1.01f;
+    }
+
+    private void RandomBullet()
+    {
+        if (random.Next(0, 10) % 3 != 0)
+        {
+            return;
+        }
+        var size = random.Next(7, 14) / 10.0f;
+        var speed = random.Next(30, 70) / 50.0f;
+        var directonX = random.Next(-10, 10) / 100.0f;
+        var directonY = random.Next(-10, 10) / 100.0f;
+
+        var trans = gameObject.GetComponent<Transform>();
+        var rigid = gameObject.GetComponent<Rigidbody2D>();
+
+        if (trans.localScale.x < .5f)
+        {
+            size += 1;
+        }
+        trans.localScale *= size;//new Vector3(size, size);
+        rigid.velocity *= speed;// new Vector2(speed, speed);
+        rigid.velocity += new Vector2(directonX, directonY);
+    }
+
+    private void ChangeSize()
+    {
+        if (size >= 3)
+        {
+            sizeDir = -1;
+        }
+        else if (size <= .5)
+        {
+            sizeDir = 1;
+        }
+
+        size += .05f * sizeDir;
+        var trans = this.gameObject.GetComponent<Transform>();
+        trans.localScale = new Vector3(size, size, size);
+    }
+
+    public enum BulletType
+    {
+        SizeChange,
+        Fast,
+        Random,
+
+        // don't add values after this
+        Max
     }
 }
