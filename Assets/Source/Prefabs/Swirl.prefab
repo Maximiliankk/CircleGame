@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1817998170688270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.08, y: -0.59, z: 0}
+  m_LocalPosition: {x: 4.63, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4511113496842554}
@@ -186,3 +186,5 @@ MonoBehaviour:
   swirlSpeed: 4
   swirlMaxAngle: 6.8
   swirlAngleDelta: 4
+  minPosition: {x: -5, y: -1.8}
+  maxPosition: {x: 4.63, y: 1.19}
