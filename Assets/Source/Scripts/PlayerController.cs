@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public GameObject bulletPrefab;
-    public GameObject reticule;
     Weapon w;
     public float moveSpeed = 100;
     Vector3 lastFireDirection;
@@ -171,22 +170,11 @@ public class PlayerController : MonoBehaviour {
         float default_reticule_scale = 5.25f * inverse_parent_scale;
         float firing_reticule_scale = 10.25f * inverse_parent_scale;
 
-        Vector3 aim_direction = lastDirection.normalized;
-        reticule.transform.localPosition = aim_direction * 0.75f * inverse_parent_scale;
-        reticule.transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
-
-        SpriteRenderer sprite = reticule.GetComponent<SpriteRenderer>();
-
-        if (do_shoot)
+        if (lastDirection.sqrMagnitude != 0.0f)
         {
-            reticule.transform.localScale = new Vector3(firing_reticule_scale, firing_reticule_scale, firing_reticule_scale);
-            sprite.color = ColorFromBytes(239, 42, 11);
-        }
-
-        else
-        {
-            reticule.transform.localScale = new Vector3(default_reticule_scale, default_reticule_scale, default_reticule_scale);
-            sprite.color = ColorFromBytes(142, 142, 142, 127);
+            Vector3 aim_direction = lastDirection.normalized;
+            transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
+            transform.localRotation = transform.localRotation * Quaternion.AngleAxis(90, new Vector3(0, 0, 1));
         }
     }
 
