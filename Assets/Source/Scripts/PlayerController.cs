@@ -11,12 +11,17 @@ public class PlayerController : MonoBehaviour {
     PlayerIndex carbonInputId;
     static int globalId = 1;
 
+    // each player has an id
+    static int s_player_id = 0;
+    int player_id;
+
     float cooldown = 0;
 
 	// Use this for initialization
 	void Start () {
         carbonInputId = (PlayerIndex)globalId;
         globalId += 1;
+        player_id = s_player_id++;
 	}
 	
 	// Update is called once per frame
@@ -30,6 +35,33 @@ public class PlayerController : MonoBehaviour {
     void UpdateShooting()
     {
         Vector3 v = new Vector3(GamePad.GetAxis(CAxis.RX, carbonInputId), -GamePad.GetAxis(CAxis.RY, carbonInputId), 0);
+
+        // so first player can use wasd and space to play
+        bool is_first_player = player_id == 0;
+        if (Input.GetKeyDown(KeyCode.Space) && is_first_player)
+        {
+            v.Set(0, 0, 0);
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                v += new Vector3(0, 1, 0);
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                v += new Vector3(-1, 0, 0);
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                v += new Vector3(0, -1, 0);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                v += new Vector3(1, 0, 0);
+            }
+        }
 
         if (cooldown <= 0 &&
             v.magnitude > 0.1)
