@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject bulletPrefab;
     Weapon w;
-    public float moveSpeed = 1;
+    public float moveSpeed = 100;
     Vector3 lastFireDirection;
     PlayerIndex carbonInputId;
     static int globalId = 1;
@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = v.normalized * 3;
             cooldown += 0.25f;
             Destroy(bul,3);
+
+            // recoil
+            //var c = v * .1f;
+            //this.gameObject.GetComponent<Transform>().position -= c;
         }
     }
 
