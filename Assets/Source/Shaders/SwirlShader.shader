@@ -52,9 +52,8 @@
 				float len = length(uv * float2(_ScreenParams.x / _ScreenParams.y, 1));
 				float angle = atan2(uv.y, uv.x) + _Angle * smoothstep(_Radius, 0, len);
 				float radius = length(uv);
-				uv = float2(radius * cos(angle), radius * sin(angle)) + _Center.xy;
 
-				fixed4 col = tex2D(_MainTex, uv);
+				fixed4 col = tex2D(_MainTex, float2(radius * cos(angle), radius * sin(angle)) + _Center.xy);
 				return col;
 			}
 			ENDCG
