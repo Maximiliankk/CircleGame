@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour {
     SittingPot last_pot_touched = null;
     bool holding_pot = false;
     public GameObject held_pot;
+    public GameObject held_sword;
+    public bool holdingSword;
+    public float swordTorque;
+    public float swordSpinTime;
 
     // each player has an id
     static int s_player_id = 0;
@@ -103,11 +107,20 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void DeactivateSword()
+    {
+        Debug.Log("deactivating sword");
+        holdingSword = false;
+        held_sword.SetActive(false);
+        rb.freezeRotation = true;
+    }
+
     void UpdatePot()
     {
         if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player picked up the fucking pot");
+            holdingSword = false;
             last_pot_touched.DeleteYourselfThePot();
             holding_pot = true;
             held_pot.SetActive(true);
@@ -224,11 +237,19 @@ public class PlayerController : MonoBehaviour {
         float default_reticule_scale = 5.25f * inverse_parent_scale;
         float firing_reticule_scale = 10.25f * inverse_parent_scale;
 
-        if (movementAllowed && lastDirection.sqrMagnitude != 0.0f)
+        if (movementAllowed && lastDirection.sqrMagnitude != 0.0f && !holdingSword)
         {
             Vector3 aim_direction = lastDirection.normalized;
             transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
             transform.localRotation = transform.localRotation * Quaternion.AngleAxis(90, new Vector3(0, 0, 1));
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (holdingSword)
+        {
+            transform.Rotate(Vector3.forward, swordTorque * Time.deltaTime);
         }
     }
 
@@ -239,8 +260,13 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        transform.rotation = Quaternion.identity;
-        rb.freezeRotation = true;
+        if (!holdingSword)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+
+        rb.freezeRotation = !holdingSword;
+
         //this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
         //this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed;
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SittingPot : MonoBehaviour {
 
+    public bool isSword;
+    public bool pickedUpSword;
+
     public void DeleteYourselfThePot()
     {
         Destroy(gameObject);
@@ -12,7 +15,7 @@ public class SittingPot : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-        if (player != null)
+        if (player != null && !pickedUpSword)
         {
             player.PlayerOnExitPot(this);
         }
@@ -24,6 +27,9 @@ public class SittingPot : MonoBehaviour {
         if (player != null)
         {
             player.PlayerOnEnterPot(this);
+            pickedUpSword = isSword;
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
