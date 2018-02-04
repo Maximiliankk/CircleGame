@@ -331,6 +331,7 @@
     <Compile Include="Assets\Source\Scripts\Swirl\SwirlBounce.cs" />
     <Compile Include="Assets\Source\Scripts\Swirl\SwirlEffect.cs" />
     <Compile Include="Assets\Source\Scripts\Swirl\SwirlRenderer.cs" />
+    <Compile Include="Assets\Source\Scripts\ThrownPot.cs" />
     <Compile Include="Assets\Source\Scripts\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -291,6 +291,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: thrown_pot_prefab
+      value: 
+      objectReference: {fileID: 1330100906672836, guid: 640b4569869b7480d88c24f7f30172db,
+        type: 2}
+    - target: {fileID: 212869144347162586, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
   m_IsPrefabParent: 0
