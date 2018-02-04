@@ -289,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\health.cs" />
+    <Compile Include="Assets\powerupStuff.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\AutoMapper.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Demo\Demo.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Demo\RollABall\BallController.cs" />

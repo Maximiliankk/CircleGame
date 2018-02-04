@@ -21,7 +21,16 @@ public class health : MonoBehaviour {
 	void Update () {
 		if(currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            this.gameObject.GetComponent<PlayerController>().enabled = false;
+            StartCoroutine(RespawnPlayer());
         }
 	}
+
+    IEnumerator RespawnPlayer()
+    {
+        yield return new WaitForSeconds(5);
+        currentHealth = maxHealth;
+        this.gameObject.GetComponent<PlayerController>().enabled = true;
+        this.gameObject.GetComponent<PlayerController>().GoToRespawn();
+    }
 }
