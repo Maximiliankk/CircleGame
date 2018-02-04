@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour {
         float default_reticule_scale = 5.25f * inverse_parent_scale;
         float firing_reticule_scale = 10.25f * inverse_parent_scale;
 
-        if (lastDirection.sqrMagnitude != 0.0f)
+        if (movementAllowed && lastDirection.sqrMagnitude != 0.0f)
         {
             Vector3 aim_direction = lastDirection.normalized;
             transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
