@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject held_pot;
     public GameObject held_sword;
     public bool holdingSword;
-    public float swordTorque;
+    public float swordSpin;
     public float swordSpinTime;
 
     // each player has an id
@@ -113,11 +113,19 @@ public class PlayerController : MonoBehaviour {
         holdingSword = false;
         held_sword.SetActive(false);
         rb.freezeRotation = true;
+        last_pot_touched = null;
     }
 
     void UpdatePot()
     {
-        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
+        if (!holdingSword && last_pot_touched != null && !holdingSword && last_pot_touched.isSword)
+        {
+            holdingSword = true;
+            Invoke("DeactivateSword", swordSpinTime);
+            held_sword.SetActive(true);
+        }
+
+        if (!holding_pot && !holdingSword && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player picked up the fucking pot");
             holdingSword = false;
@@ -249,7 +257,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (holdingSword)
         {
-            transform.Rotate(Vector3.forward, swordTorque * Time.deltaTime);
+            transform.Rotate(Vector3.forward, swordSpin * Time.deltaTime);
         }
     }
 

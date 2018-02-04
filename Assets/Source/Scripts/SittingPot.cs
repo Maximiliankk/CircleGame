@@ -28,8 +28,12 @@ public class SittingPot : MonoBehaviour {
         {
             player.PlayerOnEnterPot(this);
             pickedUpSword = isSword;
-            GetComponent<Collider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
+
+            if (isSword)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
 
