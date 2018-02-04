@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    Vector3 mySpawn;
+
     public GameObject bulletPrefab;
     Weapon w;
     public float moveSpeed = 100;
@@ -26,15 +28,23 @@ public class PlayerController : MonoBehaviour {
 
     float cooldown = 0;
     private Rigidbody2D rb;
+    public float bulletGeneralSpeed = 1;
 
     // Use this for initialization
     void Start () {
+        mySpawn = transform.position;
+
         rb = GetComponent<Rigidbody2D>();
         carbonInputId = (PlayerIndex)globalId;
         globalId += 1;
         player_id = s_player_id++;
 
         bulletType = (BulletController.BulletType)random.Next((int)BulletController.BulletType.Max);
+    }
+
+    public void GoToRespawn()
+    {
+        transform.position = mySpawn;
     }
 	
 	// Update is called once per frame
@@ -157,7 +167,7 @@ public class PlayerController : MonoBehaviour {
             Rigidbody2D rb = bul.GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
             //bul.GetComponent<Collider2D>().enabled = false;
-            rb.velocity = v.normalized * 3;
+            rb.velocity = v.normalized * bulletGeneralSpeed;
             cooldown += 0.25f;
             Destroy(bul,3);
 

@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour {
 
     private void FastBullet()
     {
-        GetComponent<Rigidbody2D>().velocity *= 1.01f;
+        GetComponent<Rigidbody2D>().velocity *= 1.02f;
     }
 
     private void RandomBullet()
@@ -94,7 +94,6 @@ public class BulletController : MonoBehaviour {
         SizeChange,
         Fast,
         Random,
-        Wave,
 
         // don't add values after this
         Max
