@@ -103,8 +103,6 @@ public class PlayerController : MonoBehaviour {
             Vector2 vel = GetComponent<Rigidbody2D>().velocity;
             Vector3 newVel = new Vector3(vel.x, vel.y, 0) + lastDirection.normalized * 20.0f;
             body.velocity += new Vector2(newVel.x, newVel.y);
-            int x;
-            x = 10;
         }
     }
 
