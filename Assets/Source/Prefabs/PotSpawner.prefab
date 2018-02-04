@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865b2e42113b34c9f9c5e7e2be63ec41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn_min: 3
-  spawn_max: 5
+  spawn_min: 10
+  spawn_max: 15
   sitting_pot_prefab: {fileID: 1161696921473036, guid: 4452de922d935ef44b8b7600db5800cb,
     type: 2}
 --- !u!114 &114434680636669704

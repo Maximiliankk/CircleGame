@@ -10,6 +10,7 @@ public class MagicSword : MonoBehaviour {
     public Rigidbody2D playerRigidbody;
     public PlayerController player;
     public float secondsBetweenDamage;
+    public AudioClip shotSound;
 
     BoxCollider2D swordCollider;
     GameObject hurtPlayer;
@@ -44,6 +45,7 @@ public class MagicSword : MonoBehaviour {
 
     void HurtPlayer()
     {
+        GetComponent<AudioSource>().PlayOneShot(shotSound, 0.5f);
         hurtPlayer.GetComponent<health>().TakeDamage(swordDamage, player.gameObject);
         if (hurtPlayer && hurtPlayer.gameObject)
         {

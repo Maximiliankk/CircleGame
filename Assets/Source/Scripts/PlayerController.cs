@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// hp power up and sound effect
+// sword spawn rate too fast
+// explode pot sound on player
+// make smoke always face upwards
+// particles are leftover
+// a second larger map for 5+ players
+
 public class PlayerController : MonoBehaviour {
 
     Vector3 mySpawn;

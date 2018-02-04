@@ -6,6 +6,7 @@ public class ThrownPot : MonoBehaviour {
 
     public GameObject playerOwner;
     public GameObject potExplodeParticles;
+    public AudioClip potCrash;
     public AudioClip potExplode;
     public float detonate_timer;
     float time = 0.0f;
@@ -13,7 +14,7 @@ public class ThrownPot : MonoBehaviour {
     void DieAndPlayBreak()
     {
         Debug.Log("die mother fucker");
-        playerOwner.GetComponent<AudioSource>().PlayOneShot(potExplode);
+        playerOwner.GetComponent<AudioSource>().PlayOneShot(potCrash);
         Destroy(gameObject);
     }
 
@@ -39,6 +40,7 @@ public class ThrownPot : MonoBehaviour {
             Instantiate(potExplodeParticles, transform.position, transform.rotation);
             DieAndPlayBreak();
             collision.gameObject.GetComponent<health>().TakeDamage(100, playerOwner);
+            playerOwner.GetComponent<AudioSource>().PlayOneShot(potExplode);
         }
         else if(collision.gameObject.tag != "Bullet")
         {

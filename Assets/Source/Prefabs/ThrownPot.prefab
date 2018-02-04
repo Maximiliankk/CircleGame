@@ -170,10 +170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b7d1a9cbda14e60958f392c0999fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerOwner: {fileID: 0}
   potExplodeParticles: {fileID: 1675887912140810, guid: 41f56b3db21bb8f49ac99c0fa7e3a6f6,
     type: 2}
-  potExplode: {fileID: 8300000, guid: acc23fc693ca92f41bcfc690436863ab, type: 3}
+  potCrash: {fileID: 8300000, guid: acc23fc693ca92f41bcfc690436863ab, type: 3}
+  potExplode: {fileID: 8300000, guid: 151ce1eb2ace01241bbe5bc2ebfbad51, type: 3}
   detonate_timer: 0.75
 --- !u!212 &212432380570451256
 SpriteRenderer:
