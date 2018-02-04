@@ -79,14 +79,14 @@ public class PlayerController : MonoBehaviour {
         if (do_flash)
         {
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
-            sprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            sprite.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             do_flash = false;
         }
 
         else
         {
             SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
-            sprite.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            sprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
     }
 
