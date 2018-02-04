@@ -33,6 +33,23 @@ public class PlayerController : MonoBehaviour {
         UpdateShooting();
     }
 
+    static Vector3 Skew(Vector3 axis)
+    {
+        return new Vector3(-axis.y, axis.x, 0);
+    }
+
+    static Quaternion QuatFromBasis(Vector3 x, Vector3 y)
+    {
+        Vector3 z = new Vector3(0, 0, 1);
+        Matrix4x4 m = new Matrix4x4(
+            new Vector4(x.x, x.y, x.z, 0),
+            new Vector4(y.x, y.y, y.z, 0),
+            new Vector4(z.x, z.y, z.z, 0),
+            new Vector4(0, 0, 0, 0)
+        );
+        return m.rotation;
+    }
+
     void UpdateShooting()
     {
         Vector3 v = new Vector3(GamePad.GetAxis(CAxis.RX, carbonInputId), -GamePad.GetAxis(CAxis.RY, carbonInputId), 0);
