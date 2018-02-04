@@ -19,6 +19,9 @@ public class SwirlRenderer : MonoBehaviour {
     public float swirlMaxAngle;
     public float swirlAngleDelta;
 
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
+
     List<Rigidbody2D> affectedRigidbodies;
     Rigidbody2D rb2d;
     bool finishing;
@@ -33,7 +36,6 @@ public class SwirlRenderer : MonoBehaviour {
         finishing = false;
         BeginSwirl();
         mat.SetFloat("_Angle", 0);
-        // Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
     void BeginSwirl()
@@ -51,6 +53,8 @@ public class SwirlRenderer : MonoBehaviour {
         float swirlAngle = 0;
         activated = true;
         rb2d.velocity = Vector2.zero;
+
+        transform.position = new Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y));
 
         while (swirlAngle < swirlMaxAngle)
         {
