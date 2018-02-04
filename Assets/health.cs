@@ -22,6 +22,8 @@ public class health : MonoBehaviour {
 		if(currentHealth <= 0)
         {
             this.gameObject.GetComponent<PlayerController>().enabled = false;
+            this.gameObject.GetComponent<Renderer>().enabled = false;
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
             StartCoroutine(RespawnPlayer());
         }
 	}
@@ -31,6 +33,8 @@ public class health : MonoBehaviour {
         yield return new WaitForSeconds(5);
         currentHealth = maxHealth;
         this.gameObject.GetComponent<PlayerController>().enabled = true;
+        this.gameObject.GetComponent<Renderer>().enabled = true;
+        this.gameObject.GetComponent<Collider2D>().enabled = true;
         this.gameObject.GetComponent<PlayerController>().GoToRespawn();
     }
 }

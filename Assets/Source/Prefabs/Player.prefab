@@ -135,10 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1232978088433666, guid: 650f42463cddff64aa169b8808991e7d,
     type: 2}
-  reticule: {fileID: 0}
+  reticule: {fileID: 1787437444986180}
   moveSpeed: 20
-  default_reticule_scale: 0.085
-  firing_reticule_scale: 0.04
   bulletGeneralSpeed: 6
 --- !u!212 &212062841428172398
 SpriteRenderer:

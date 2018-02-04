@@ -18,9 +18,6 @@ public class PlayerController : MonoBehaviour {
     BulletController.BulletType bulletType;
     Color bulletColor;
 
-    public float default_reticule_scale = 0.085f;
-    public float firing_reticule_scale = .04f;
-
     static Color[] colors = new Color[] { Color.red, Color.green, Color.black, Color.magenta, Color.yellow, Color.white, Color.gray, Color.cyan };
 
     SittingPot last_pot_touched = null;
@@ -180,24 +177,25 @@ public class PlayerController : MonoBehaviour {
             //this.gameObject.GetComponent<Transform>().position -= c;
         }
 
-        //default_reticule_scale = 0.085f;
-        //firing_reticule_scale = .04f;
+        float inverse_parent_scale = 1.0f / transform.localScale.x;
+        float default_reticule_scale = 5.25f * inverse_parent_scale;
+        float firing_reticule_scale = 10.25f * inverse_parent_scale;
 
         Vector3 aim_direction = lastDirection.normalized;
-        reticule.transform.localPosition = aim_direction * 20f;
-        reticule.transform.rotation = QuatFromBasis(aim_direction, Skew(aim_direction));
+        reticule.transform.localPosition = aim_direction * 5.75f * inverse_parent_scale;
+        reticule.transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
 
         SpriteRenderer sprite = reticule.GetComponent<SpriteRenderer>();
 
         if (do_shoot)
         {
-            reticule.transform.localScale = new Vector3(default_reticule_scale, default_reticule_scale, default_reticule_scale);
+            reticule.transform.localScale = new Vector3(firing_reticule_scale, firing_reticule_scale, firing_reticule_scale);
             sprite.color = ColorFromBytes(239, 42, 11);
         }
 
         else
         {
-            reticule.transform.localScale = new Vector3(firing_reticule_scale, firing_reticule_scale, firing_reticule_scale);
+            reticule.transform.localScale = new Vector3(default_reticule_scale, default_reticule_scale, default_reticule_scale);
             sprite.color = ColorFromBytes(142, 142, 142, 127);
         }
     }
