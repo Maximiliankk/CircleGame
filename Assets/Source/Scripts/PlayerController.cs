@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
 
     void UpdatePot()
     {
-        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E))
+        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player picked up the fucking pot");
             last_pot_touched.DeleteYourselfThePot();
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour {
             held_pot.SetActive(true);
         }
 
-        else if (holding_pot && Input.GetKeyDown(KeyCode.E))
+        else if (holding_pot && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
         {
             Debug.Log("player throws the fucking pot");
             holding_pot = false;
