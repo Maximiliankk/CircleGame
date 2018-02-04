@@ -95,6 +95,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 0}
   player: {fileID: 0}
   secondsBetweenDamage: 1
+  shotSound: {fileID: 8300000, guid: d736c7df956dde24cbbf69b916561d2b, type: 3}
 --- !u!212 &212150392015930676
 SpriteRenderer:
   m_ObjectHideFlags: 1
