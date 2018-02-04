@@ -39,3 +39,6 @@ CircleGame.csproj
 CircleGame.Editor.csproj
 .vs/CircleGame/v15/Server/sqlite3/storage.ide-wal
 .vs/CircleGame/v15/Server/sqlite3/storage.ide
+*.csproj
+CircleGame.csproj
+CircleGame.Editor.csproj

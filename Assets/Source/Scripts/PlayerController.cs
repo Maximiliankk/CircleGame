@@ -170,6 +170,10 @@ public class PlayerController : MonoBehaviour {
             lastFireDirection = v;
             GameObject bul = GameObject.Instantiate(bulletPrefab);
             bul.transform.position = this.transform.position + v.normalized * 0.75f;
+
+            float rot_z = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+
             bul.GetComponent<Renderer>().material.color = colors[(int)carbonInputId - 1];
             bul.GetComponent<BulletController>().playerOwner = this.gameObject;
             bul.GetComponent<BulletController>().bulletType = bulletType;
@@ -206,7 +210,7 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
         rb.freezeRotation = true;
         //this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
         //this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed;
