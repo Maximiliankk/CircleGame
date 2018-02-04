@@ -310,8 +310,10 @@
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchButton.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchMapping.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchStick.cs" />
+    <Compile Include="Assets\ScoreCounter.cs" />
     <Compile Include="Assets\Source\Scripts\Background.cs" />
     <Compile Include="Assets\Source\Scripts\BulletController.cs" />
+    <Compile Include="Assets\Source\Scripts\MagicSword.cs" />
     <Compile Include="Assets\Source\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Source\Scripts\PotSpawner.cs" />
     <Compile Include="Assets\Source\Scripts\SittingPot.cs" />

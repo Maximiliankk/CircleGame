@@ -9,7 +9,10 @@ public class SittingPot : MonoBehaviour {
 
     public void DeleteYourselfThePot()
     {
-        Destroy(gameObject);
+        if (gameObject)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

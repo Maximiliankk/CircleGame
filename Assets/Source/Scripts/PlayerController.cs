@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour {
             held_sword.SetActive(true);
         }
 
-        if (!holding_pot && !holdingSword && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetState(carbonInputId).Pressed(CButton.RB))
+        if (!holding_pot && !holdingSword && last_pot_touched != null && (Input.GetKeyDown(KeyCode.E) || GamePad.GetState(carbonInputId).Pressed(CButton.RB)))
 //>>>>>>> 83ca0ce9b5f17ffcb113bc546b433b97c860e5c6
         {
             Debug.Log("player picked up the fucking pot");

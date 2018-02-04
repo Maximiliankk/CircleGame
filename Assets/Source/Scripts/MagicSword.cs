@@ -44,8 +44,15 @@ public class MagicSword : MonoBehaviour {
 
     void HurtPlayer()
     {
-        hurtPlayer.GetComponent<health>().TakeDamage(swordDamage);
-        hurtPlayer.GetComponent<health>().TakeDamage(swordDamage);
+        hurtPlayer.GetComponent<health>().TakeDamage(swordDamage, player.gameObject);
+        if (hurtPlayer && hurtPlayer.gameObject)
+        {
+            DeflectObject(hurtPlayer.gameObject, playerKnockForce);
+        }
+        else
+        {
+            hurtPlayer = null;
+        }
     }
 
     void DeflectObject(GameObject other, float knockForce)
