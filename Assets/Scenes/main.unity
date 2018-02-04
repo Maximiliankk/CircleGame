@@ -604,6 +604,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpin
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpinTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
   m_IsPrefabParent: 0
@@ -735,6 +745,16 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpin
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpinTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
   m_IsPrefabParent: 0
@@ -785,6 +805,10 @@ Prefab:
     - target: {fileID: 1817998170688270, guid: dad7834597257b64fbd7193fb20139e4, type: 2}
       propertyPath: m_Name
       value: DeathSwirlVortex
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817998170688270, guid: dad7834597257b64fbd7193fb20139e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dad7834597257b64fbd7193fb20139e4, type: 2}
@@ -1040,6 +1064,26 @@ Transform:
   m_PrefabParentObject: {fileID: 4316596211503066, guid: 4b4018bda0612e34d8ccf891034efafe,
     type: 2}
   m_PrefabInternal: {fileID: 247820070}
+--- !u!1 &593028958 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1021441653073270, guid: 550da674bc99453499ce2263b4f07a08,
+    type: 2}
+  m_PrefabInternal: {fileID: 1721925804}
+--- !u!114 &593028959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 593028958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865b2e42113b34c9f9c5e7e2be63ec41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn_min: 3
+  spawn_max: 5
+  sitting_pot_prefab: {fileID: 1161696921473036, guid: 4452de922d935ef44b8b7600db5800cb,
+    type: 2}
 --- !u!1 &653928337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,35 +1391,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 212062841428172398, guid: 4b4018bda0612e34d8ccf891034efafe,
-        type: 2}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1720125431225964, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
       propertyPath: m_Name
       value: Player (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 212062841428172398, guid: 4b4018bda0612e34d8ccf891034efafe,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2890b8c7cf7ea724ea94ee3666443a07,
-        type: 3}
-    - target: {fileID: 50668114998571636, guid: 4b4018bda0612e34d8ccf891034efafe,
-        type: 2}
-      propertyPath: m_AngularDrag
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 50668114998571636, guid: 4b4018bda0612e34d8ccf891034efafe,
-        type: 2}
-      propertyPath: m_LinearDrag
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 58995273898762546, guid: 4b4018bda0612e34d8ccf891034efafe,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1983243071039876, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
+      propertyPath: m_TagString
+      value: Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
@@ -2183,6 +2205,16 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 9749a82d7076fb24aace0adf4dc2cf05,
         type: 3}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpin
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114615650713574514, guid: 4b4018bda0612e34d8ccf891034efafe,
+        type: 2}
+      propertyPath: swordSpinTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b4018bda0612e34d8ccf891034efafe, type: 2}
   m_IsPrefabParent: 0

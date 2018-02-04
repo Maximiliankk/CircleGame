@@ -132,7 +132,7 @@ public class SwirlRenderer : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         Rigidbody2D rb2d = other.GetComponent<Rigidbody2D>();
-        if (rb2d && !affectedRigidbodies.Contains(rb2d))
+        if (rb2d && !affectedRigidbodies.Contains(rb2d) && other.tag != "Sword")
         {
             affectedRigidbodies.Add(rb2d);
         }
