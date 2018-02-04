@@ -318,6 +318,7 @@
     <None Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Gizmos\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\readme.txt" />
+    <None Include="Assets\Source\Shaders\SwirlShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

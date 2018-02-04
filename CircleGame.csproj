@@ -325,12 +325,16 @@
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchStick.cs" />
     <Compile Include="Assets\Source\Scripts\BulletController.cs" />
     <Compile Include="Assets\Source\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Source\Scripts\SittingPot.cs" />
+    <Compile Include="Assets\Source\Scripts\SwirlEffect.cs" />
+    <Compile Include="Assets\Source\Scripts\SwirlRenderer.cs" />
     <Compile Include="Assets\Source\Scripts\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Gizmos\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\readme.txt" />
+    <None Include="Assets\Source\Shaders\SwirlShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
