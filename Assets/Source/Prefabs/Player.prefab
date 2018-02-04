@@ -137,15 +137,13 @@ MonoBehaviour:
     type: 2}
   reticule: {fileID: 1397820654172840}
   moveSpeed: 20
-  default_reticule_scale: 0.085
-  firing_reticule_scale: 0.04
 --- !u!212 &212062841428172398
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720125431225964}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
