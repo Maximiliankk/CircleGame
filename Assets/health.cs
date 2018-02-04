@@ -17,6 +17,7 @@ public class health : MonoBehaviour {
         currentHealth -= dmg;
         GameObject hit_particle = Instantiate(hit_particles_prefab);
         hit_particle.transform.position = transform.position;
+        gameObject.GetComponent<PlayerController>().DamageFlash();
     }
 
 	// Use this for initialization
