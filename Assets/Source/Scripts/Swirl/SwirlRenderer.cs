@@ -19,8 +19,12 @@ public class SwirlRenderer : MonoBehaviour {
     public float swirlMaxAngle;
     public float swirlAngleDelta;
 
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
+
     List<Rigidbody2D> affectedRigidbodies;
     Rigidbody2D rb2d;
+    bool finishing;
 
     void Awake ()
     {
@@ -29,9 +33,9 @@ public class SwirlRenderer : MonoBehaviour {
         circleCollider = GetComponent<CircleCollider2D>();
         rb2d.velocity = Vector2.zero;
         activated = false;
+        finishing = false;
         BeginSwirl();
         mat.SetFloat("_Angle", 0);
-        // Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
     void BeginSwirl()
@@ -50,6 +54,8 @@ public class SwirlRenderer : MonoBehaviour {
         activated = true;
         rb2d.velocity = Vector2.zero;
 
+        transform.position = new Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y));
+
         while (swirlAngle < swirlMaxAngle)
         {
             swirlAngle = Mathf.Min(swirlMaxAngle, swirlAngle + swirlAngleDelta * Time.deltaTime);
@@ -64,6 +70,21 @@ public class SwirlRenderer : MonoBehaviour {
     IEnumerator EndSwirlCoroutine ()
     {
         float swirlRadius = swirlMaxAngle;
+        finishing = true;
+
+        foreach (Rigidbody2D rb in affectedRigidbodies)
+        {
+            if (rb)
+            {
+                rb.drag = 4;
+                PlayerController pc = rb.GetComponent<PlayerController>();
+                if (pc)
+                {
+                    rb.GetComponent<PlayerController>().SetMovementAllowed(true);
+                }
+            }
+        }
+
         while (swirlRadius > 0)
         {
             swirlRadius = Mathf.Max(0, swirlRadius - swirlAngleDelta * Time.deltaTime);
@@ -72,6 +93,7 @@ public class SwirlRenderer : MonoBehaviour {
         }
 
         activated = false;
+        finishing = false;
         Invoke("BeginSwirl", Random.Range(timeBetweenSpawnRange.x, timeBetweenSpawnRange.y));
     }
 
@@ -87,9 +109,23 @@ public class SwirlRenderer : MonoBehaviour {
 
         foreach (Rigidbody2D rb2d in affectedRigidbodies)
         {
-            float dist = Vector2.Distance(transform.position, rb2d.transform.position);
-            rb2d.AddForce((transform.position - rb2d.transform.position).normalized * Mathf.Clamp01(1 - dist/circleCollider.radius) * swirlPullMultiplier);
-            rb2d.AddTorque(deltaAngularVelocity);
+            if (rb2d)
+            {
+                float dist = Vector2.Distance(transform.position, rb2d.transform.position);
+                rb2d.AddForce((transform.position - rb2d.transform.position).normalized * Mathf.Clamp01(1 - dist / circleCollider.radius) * swirlPullMultiplier);
+                rb2d.AddTorque(deltaAngularVelocity);
+                rb2d.freezeRotation = false;
+                rb2d.drag = 1;
+
+                if (dist <= 2 && !finishing)
+                {
+                    PlayerController pc = rb2d.GetComponent<PlayerController>();
+                    if (pc)
+                    {
+                        rb2d.GetComponent<PlayerController>().SetMovementAllowed(false);
+                    }
+                }
+            }
         }
     }
 
@@ -107,7 +143,13 @@ public class SwirlRenderer : MonoBehaviour {
         Rigidbody2D rb2d = other.GetComponent<Rigidbody2D>();
         if (rb2d && affectedRigidbodies.Contains(rb2d))
         {
+            rb2d.drag = 4;
             affectedRigidbodies.Remove(rb2d);
+            PlayerController pc = rb2d.GetComponent<PlayerController>();
+            if (pc)
+            {
+                rb2d.GetComponent<PlayerController>().SetMovementAllowed(true);
+            }
         }
     }
 }

@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     public float bulletGeneralSpeed = 1;
 
+    public bool movementAllowed = true;
+
     // Use this for initialization
     void Start () {
         mySpawn = transform.position;
@@ -49,6 +51,11 @@ public class PlayerController : MonoBehaviour {
     public void GoToRespawn()
     {
         transform.position = mySpawn;
+    }
+
+    public void SetMovementAllowed(bool movementAllowed)
+    {
+        this.movementAllowed = movementAllowed;
     }
 	
 	// Update is called once per frame
@@ -196,7 +203,7 @@ public class PlayerController : MonoBehaviour {
         float default_reticule_scale = 5.25f * inverse_parent_scale;
         float firing_reticule_scale = 10.25f * inverse_parent_scale;
 
-        if (lastDirection.sqrMagnitude != 0.0f)
+        if (movementAllowed && lastDirection.sqrMagnitude != 0.0f)
         {
             Vector3 aim_direction = lastDirection.normalized;
             transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
@@ -206,6 +213,13 @@ public class PlayerController : MonoBehaviour {
 
     void UpdateMovement()
     {
+        if (!movementAllowed)
+        {
+            return;
+        }
+
+        transform.rotation = Quaternion.identity;
+        rb.freezeRotation = true;
         //this.transform.position += new Vector3(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1"), 0) * this.moveSpeed;
         //this.transform.position += new Vector3(GamePad.GetAxis(CAxis.LX, carbonInputId), -GamePad.GetAxis(CAxis.LY, carbonInputId), 0) * this.moveSpeed;
 

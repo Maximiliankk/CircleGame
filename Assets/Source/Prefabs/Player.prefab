@@ -86,8 +86,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 4
+  m_AngularDrag: 3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -138,6 +138,7 @@ MonoBehaviour:
   moveSpeed: 20
   held_pot: {fileID: 1562875478066182}
   bulletGeneralSpeed: 1
+  movementAllowed: 1
 --- !u!212 &212062841428172398
 SpriteRenderer:
   m_ObjectHideFlags: 1
