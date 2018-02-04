@@ -167,11 +167,13 @@ public class PlayerController : MonoBehaviour {
             //this.gameObject.GetComponent<Transform>().position -= c;
         }
 
-        const float default_reticule_scale = 0.085f;
-        const float firing_reticule_scale = 0.04f;
+        Debug.Log(transform.localScale.x);
+        float inverse_parent_scale = 1.0f / transform.localScale.x;
+        float default_reticule_scale = 0.25f * inverse_parent_scale;
+        float firing_reticule_scale = 0.25f * inverse_parent_scale;
 
         Vector3 aim_direction = lastDirection.normalized;
-        reticule.transform.localPosition = aim_direction * 0.2f;
+        reticule.transform.localPosition = aim_direction * 0.75f * inverse_parent_scale;
         reticule.transform.localRotation = QuatFromBasis(aim_direction, Skew(aim_direction));
 
         SpriteRenderer sprite = reticule.GetComponent<SpriteRenderer>();
