@@ -65,6 +65,29 @@ public class PlayerController : MonoBehaviour {
         UpdateMovement();
         UpdateShooting();
         UpdatePot();
+        UpdateDamageFlash();
+    }
+
+    bool do_flash;
+    public void DamageFlash()
+    {
+        do_flash = true;
+    }
+
+    void UpdateDamageFlash()
+    {
+        if (do_flash)
+        {
+            SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+            sprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            do_flash = false;
+        }
+
+        else
+        {
+            SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+            sprite.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        }
     }
 
     public void PlayerOnEnterPot(SittingPot pot)

@@ -10,6 +10,7 @@ public class health : MonoBehaviour {
     public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
+        gameObject.GetComponent<PlayerController>().DamageFlash();
     }
 
 	// Use this for initialization
