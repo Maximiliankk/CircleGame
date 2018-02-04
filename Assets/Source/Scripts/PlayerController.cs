@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 
     SittingPot last_pot_touched = null;
     bool holding_pot = false;
+    public GameObject held_pot;
 
     // each player has an id
     static int s_player_id = 0;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         player_id = s_player_id++;
 
         bulletType = (BulletController.BulletType)random.Next((int)BulletController.BulletType.Max);
+        held_pot.SetActive(false);
     }
 
     public void GoToRespawn()
@@ -76,12 +78,14 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("player picked up the fucking pot");
             last_pot_touched.DeleteYourselfThePot();
             holding_pot = true;
+            held_pot.SetActive(true);
         }
 
         else if (holding_pot && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("player throws the fucking pot");
             holding_pot = false;
+            held_pot.SetActive(false);
         }
     }
 
