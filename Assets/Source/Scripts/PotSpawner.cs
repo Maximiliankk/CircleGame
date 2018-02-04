@@ -16,6 +16,7 @@ public class PotSpawner : MonoBehaviour {
         Debug.Log(x);
         Debug.Log(y);
         pot.transform.position = new Vector3(x, y, 0);
+        pot.transform.localScale *= Random.Range(0.8f, 1.2f);
         Invoke("SpawnPotCallback", Random.Range(spawn_min, spawn_max));
     }
 

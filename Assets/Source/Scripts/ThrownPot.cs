@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class ThrownPot : MonoBehaviour {
 
+    public GameObject player;
+    public GameObject potExplodeParticles;
+    public AudioClip potExplode;
     public float detonate_timer;
     float time = 0.0f;
 
-	// Use this for initialization
-	void Start () {
+    void DieAndPlayBreak()
+    {
+        Debug.Log("die mother fucker");
+        player.GetComponent<AudioSource>().PlayOneShot(potExplode);
+        Destroy(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,8 +28,21 @@ public class ThrownPot : MonoBehaviour {
 
         if (time >= detonate_timer)
         {
-            Debug.Log("die mother fucker");
-            Destroy(gameObject);
+            DieAndPlayBreak();
         }
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            Instantiate(potExplodeParticles, transform.position, transform.rotation);
+            DieAndPlayBreak();
+            collision.gameObject.GetComponent<health>().TakeDamage(100);
+        }
+        else if(collision.gameObject.tag != "Bullet")
+        {
+            DieAndPlayBreak();
+        }
+    }
 }

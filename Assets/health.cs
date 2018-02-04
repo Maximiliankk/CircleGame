@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class health : MonoBehaviour {
 
+    public GameObject hit_particles_prefab;
+    public GameObject smoke_prefab;
     public int currentHealth = 100;
     public int maxHealth = 100;
+
+    bool has_smoke = false;
+    public int smokeThreshold = 40;
 
     public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
+        GameObject hit_particle = Instantiate(hit_particles_prefab);
+        hit_particle.transform.position = transform.position;
     }
 
 	// Use this for initialization
@@ -25,6 +32,15 @@ public class health : MonoBehaviour {
             this.gameObject.GetComponent<Renderer>().enabled = false;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             StartCoroutine(RespawnPlayer());
+        }
+
+        if (currentHealth <= smokeThreshold && !has_smoke)
+        {
+            GameObject smoke = Instantiate(smoke_prefab);
+            smoke.transform.position = gameObject.transform.position;
+            smoke.transform.parent = gameObject.transform;
+            smoke.transform.localScale *= transform.localScale.x;
+            has_smoke = true;
         }
 	}
 

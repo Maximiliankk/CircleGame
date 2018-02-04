@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
 
     Vector3 mySpawn;
 
+    public AudioClip shotSound;
+    public AudioClip potThrowSound;
+
     public GameObject bulletPrefab;
     Weapon w;
     public float moveSpeed = 100;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     public float bulletGeneralSpeed = 1;
 
     public bool movementAllowed = true;
+    public AudioClip pickUpPotSound;
 
     // Use this for initialization
     void Start () {
@@ -82,27 +86,32 @@ public class PlayerController : MonoBehaviour {
 
     void UpdatePot()
     {
-        if (!holding_pot && last_pot_touched != null && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
+        if (!holding_pot && last_pot_touched != null && (Input.GetKeyDown(KeyCode.E) || GamePad.GetState(carbonInputId).Pressed(CButton.RB)))
         {
             Debug.Log("player picked up the fucking pot");
             last_pot_touched.DeleteYourselfThePot();
             holding_pot = true;
             held_pot.SetActive(true);
+            GetComponent<AudioSource>().PlayOneShot(pickUpPotSound);
         }
 
-        else if (holding_pot && Input.GetKeyDown(KeyCode.E) || GamePad.GetButton(CButton.A, carbonInputId))
+        else if (holding_pot && (Input.GetKeyDown(KeyCode.E) || GamePad.GetState(carbonInputId).Pressed(CButton.RB)))
         {
             Debug.Log("player throws the fucking pot");
             holding_pot = false;
             held_pot.SetActive(false);
 
             GameObject thrown_pot = Instantiate(thrown_pot_prefab);
+            thrown_pot.GetComponent<ThrownPot>().player = gameObject;
             thrown_pot.transform.position = held_pot.transform.position;
             thrown_pot.transform.rotation = held_pot.transform.rotation;
             Rigidbody2D body = thrown_pot.GetComponent<Rigidbody2D>();
             Vector2 vel = GetComponent<Rigidbody2D>().velocity;
             Vector3 newVel = new Vector3(vel.x, vel.y, 0) + lastDirection.normalized * 20.0f;
             body.velocity += new Vector2(newVel.x, newVel.y);
+            int x;
+            x = 10;
+            GetComponent<AudioSource>().PlayOneShot(potThrowSound);
         }
     }
 
@@ -144,6 +153,7 @@ public class PlayerController : MonoBehaviour {
     void UpdateShooting()
     {
         Vector3 v = new Vector3(GamePad.GetAxis(CAxis.RX, carbonInputId), -GamePad.GetAxis(CAxis.RY, carbonInputId), 0);
+        if (v.magnitude > .1f) lastDirection = v;
 
         Vector3 keyDirection = Vector3.zero;
 
@@ -195,6 +205,8 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = v.normalized * bulletGeneralSpeed;
             cooldown += 0.25f;
             Destroy(bul,3);
+
+            GetComponent<AudioSource>().PlayOneShot(shotSound, 0.5f);
 
             // recoil
             //var c = v * .1f;
