@@ -327,8 +327,9 @@
     <Compile Include="Assets\Source\Scripts\BulletController.cs" />
     <Compile Include="Assets\Source\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Source\Scripts\SittingPot.cs" />
-    <Compile Include="Assets\Source\Scripts\SwirlEffect.cs" />
-    <Compile Include="Assets\Source\Scripts\SwirlRenderer.cs" />
+    <Compile Include="Assets\Source\Scripts\Swirl\SwirlBounce.cs" />
+    <Compile Include="Assets\Source\Scripts\Swirl\SwirlEffect.cs" />
+    <Compile Include="Assets\Source\Scripts\Swirl\SwirlRenderer.cs" />
     <Compile Include="Assets\Source\Scripts\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
