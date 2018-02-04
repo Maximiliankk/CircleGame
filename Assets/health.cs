@@ -12,12 +12,21 @@ public class health : MonoBehaviour {
     bool has_smoke = false;
     public int smokeThreshold = 40;
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(int dmg, GameObject source)
     {
         currentHealth -= dmg;
         GameObject hit_particle = Instantiate(hit_particles_prefab);
         hit_particle.transform.position = transform.position;
         gameObject.GetComponent<PlayerController>().DamageFlash();
+
+        if (currentHealth <= 0)
+        {
+            source.GetComponent<ScoreCounter>().AddKills(1);
+            this.gameObject.GetComponent<PlayerController>().enabled = false;
+            this.gameObject.GetComponent<Renderer>().enabled = false;
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            StartCoroutine(RespawnPlayer());
+        }
     }
 
 	// Use this for initialization
@@ -27,13 +36,6 @@ public class health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(currentHealth <= 0)
-        {
-            this.gameObject.GetComponent<PlayerController>().enabled = false;
-            this.gameObject.GetComponent<Renderer>().enabled = false;
-            this.gameObject.GetComponent<Collider2D>().enabled = false;
-            StartCoroutine(RespawnPlayer());
-        }
 
         if (currentHealth <= smokeThreshold && !has_smoke)
         {

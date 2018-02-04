@@ -39,7 +39,7 @@ public class BulletController : MonoBehaviour {
         if(collision.gameObject.tag == "Player" &&
             collision.gameObject != playerOwner)
         {
-            collision.gameObject.GetComponent<health>().TakeDamage(damage);
+            collision.gameObject.GetComponent<health>().TakeDamage(damage, playerOwner);
             Destroy(this.gameObject);
             Debug.Log("damaged, health left: " + collision.gameObject.GetComponent<health>().currentHealth);
         }

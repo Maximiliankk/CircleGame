@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
             held_pot.SetActive(false);
 
             GameObject thrown_pot = Instantiate(thrown_pot_prefab);
-            thrown_pot.GetComponent<ThrownPot>().player = gameObject;
+            thrown_pot.GetComponent<ThrownPot>().playerOwner = gameObject;
             thrown_pot.transform.position = held_pot.transform.position;
             thrown_pot.transform.rotation = held_pot.transform.rotation;
             Rigidbody2D body = thrown_pot.GetComponent<Rigidbody2D>();

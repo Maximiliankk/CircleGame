@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThrownPot : MonoBehaviour {
 
-    public GameObject player;
+    public GameObject playerOwner;
     public GameObject potExplodeParticles;
     public AudioClip potExplode;
     public float detonate_timer;
@@ -13,7 +13,7 @@ public class ThrownPot : MonoBehaviour {
     void DieAndPlayBreak()
     {
         Debug.Log("die mother fucker");
-        player.GetComponent<AudioSource>().PlayOneShot(potExplode);
+        playerOwner.GetComponent<AudioSource>().PlayOneShot(potExplode);
         Destroy(gameObject);
     }
 
@@ -34,11 +34,11 @@ public class ThrownPot : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && collision.gameObject != playerOwner)
         {
             Instantiate(potExplodeParticles, transform.position, transform.rotation);
             DieAndPlayBreak();
-            collision.gameObject.GetComponent<health>().TakeDamage(100);
+            collision.gameObject.GetComponent<health>().TakeDamage(100, playerOwner);
         }
         else if(collision.gameObject.tag != "Bullet")
         {
