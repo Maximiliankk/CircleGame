@@ -44,7 +44,6 @@
 			float _Radius;
 			float _Angle;
 			float4 _Center;
-			float4 _Center1;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
