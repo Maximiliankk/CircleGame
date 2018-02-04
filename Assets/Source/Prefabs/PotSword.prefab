@@ -56,7 +56,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -89,11 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a48b06a619fb440b33d2e28d7b3558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordDamage: 30
+  swordDamage: 5
   playerKnockForce: 20
   bulletKnockForce: 20
   playerRigidbody: {fileID: 0}
   player: {fileID: 0}
+  secondsBetweenDamage: 1
 --- !u!212 &212150392015930676
 SpriteRenderer:
   m_ObjectHideFlags: 1

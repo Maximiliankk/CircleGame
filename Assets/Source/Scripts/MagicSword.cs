@@ -9,8 +9,10 @@ public class MagicSword : MonoBehaviour {
     public float bulletKnockForce;
     public Rigidbody2D playerRigidbody;
     public PlayerController player;
+    public float secondsBetweenDamage;
 
     BoxCollider2D swordCollider;
+    GameObject hurtPlayer;
 
     void Awake()
     {
@@ -18,21 +20,32 @@ public class MagicSword : MonoBehaviour {
         player = GetComponentInParent<PlayerController>();
     }
 
-	void Update () {
-
-	}
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && other.gameObject != player.gameObject)
         {
-            other.GetComponent<health>().TakeDamage(swordDamage);
-            DeflectObject(other.gameObject, playerKnockForce);
+            hurtPlayer = other.gameObject;
+            InvokeRepeating("HurtPlayer", 0, secondsBetweenDamage);
         }
         else if (other.tag == "Bullet")
         {
             DeflectObject(other.gameObject, bulletKnockForce);
         }
+    }
+    
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player" && other.gameObject == hurtPlayer)
+        {
+            CancelInvoke("HurtPlayer");
+            hurtPlayer = null;
+        }
+    }
+
+    void HurtPlayer()
+    {
+        hurtPlayer.GetComponent<health>().TakeDamage(swordDamage);
+        hurtPlayer.GetComponent<health>().TakeDamage(swordDamage);
     }
 
     void DeflectObject(GameObject other, float knockForce)

@@ -26,6 +26,11 @@ public class SittingPot : MonoBehaviour {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
+            if (isSword && player.holdingSword)
+            {
+                return;
+            }
+
             player.PlayerOnEnterPot(this);
             pickedUpSword = isSword;
 
