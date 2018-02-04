@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 
     float cooldown = 0;
     private Rigidbody2D rb;
-    public float bulletGeneralSpeed = 6;
+    public float bulletGeneralSpeed = 1;
 
     // Use this for initialization
     void Start () {

@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour {
 
     private void FastBullet()
     {
-        GetComponent<Rigidbody2D>().velocity *= 1.08f;
+        GetComponent<Rigidbody2D>().velocity *= 1.02f;
     }
 
     private void RandomBullet()
