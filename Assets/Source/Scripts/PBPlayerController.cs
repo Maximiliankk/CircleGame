@@ -9,7 +9,7 @@ using UnityEngine;
 // particles are leftover
 // a second larger map for 5+ players
 
-public class PlayerController : MonoBehaviour {
+public class PBPlayerController : MonoBehaviour {
 
     Vector3 mySpawn;
 

@@ -17,12 +17,12 @@ public class health : MonoBehaviour {
         currentHealth -= dmg;
         GameObject hit_particle = Instantiate(hit_particles_prefab);
         hit_particle.transform.position = transform.position;
-        gameObject.GetComponent<PlayerController>().DamageFlash();
+        gameObject.GetComponent<PBPlayerController>().DamageFlash();
 
         if (currentHealth <= 0)
         {
             source.GetComponent<ScoreCounter>().AddKills(1);
-            this.gameObject.GetComponent<PlayerController>().enabled = false;
+            this.gameObject.GetComponent<PBPlayerController>().enabled = false;
             this.gameObject.GetComponent<Renderer>().enabled = false;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             StartCoroutine(RespawnPlayer());
@@ -51,9 +51,9 @@ public class health : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
         currentHealth = maxHealth;
-        this.gameObject.GetComponent<PlayerController>().enabled = true;
+        this.gameObject.GetComponent<PBPlayerController>().enabled = true;
         this.gameObject.GetComponent<Renderer>().enabled = true;
         this.gameObject.GetComponent<Collider2D>().enabled = true;
-        this.gameObject.GetComponent<PlayerController>().GoToRespawn();
+        this.gameObject.GetComponent<PBPlayerController>().GoToRespawn();
     }
 }

@@ -17,7 +17,7 @@ public class SittingPot : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        PBPlayerController player = collision.gameObject.GetComponent<PBPlayerController>();
         if (player != null && !pickedUpSword)
         {
             player.PlayerOnExitPot(this);
@@ -26,7 +26,7 @@ public class SittingPot : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        PBPlayerController player = collision.gameObject.GetComponent<PBPlayerController>();
         if (player != null)
         {
             if (isSword && player.holdingSword)

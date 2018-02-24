@@ -8,7 +8,7 @@ public class MagicSword : MonoBehaviour {
     public float playerKnockForce;
     public float bulletKnockForce;
     public Rigidbody2D playerRigidbody;
-    public PlayerController player;
+    public PBPlayerController player;
     public float secondsBetweenDamage;
     public AudioClip shotSound;
 
@@ -18,7 +18,7 @@ public class MagicSword : MonoBehaviour {
     void Awake()
     {
         swordCollider = GetComponent<BoxCollider2D>();
-        player = GetComponentInParent<PlayerController>();
+        player = GetComponentInParent<PBPlayerController>();
     }
 
     void OnTriggerEnter2D(Collider2D other)

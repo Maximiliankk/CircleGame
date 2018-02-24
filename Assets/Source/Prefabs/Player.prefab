@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114622307709815782}
   - component: {fileID: 82370943475626780}
   - component: {fileID: 114834775527850272}
+  - component: {fileID: 114353188413809244}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -308,6 +309,38 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   smokeThreshold: 40
+--- !u!114 &114353188413809244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720125431225964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 75
+    i1: 64
+    i2: 24
+    i3: 189
+    i4: 160
+    i5: 97
+    i6: 46
+    i7: 52
+    i8: 216
+    i9: 204
+    i10: 248
+    i11: 145
+    i12: 3
+    i13: 78
+    i14: 250
+    i15: 254
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114615650713574514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,6 +399,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 0}
   player: {fileID: 0}
   secondsBetweenDamage: 0
+  shotSound: {fileID: 0}
 --- !u!114 &114834775527850272
 MonoBehaviour:
   m_ObjectHideFlags: 1

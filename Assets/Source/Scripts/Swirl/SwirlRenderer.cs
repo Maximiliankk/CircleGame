@@ -77,10 +77,10 @@ public class SwirlRenderer : MonoBehaviour {
             if (rb)
             {
                 rb.drag = 4;
-                PlayerController pc = rb.GetComponent<PlayerController>();
+                PBPlayerController pc = rb.GetComponent<PBPlayerController>();
                 if (pc)
                 {
-                    rb.GetComponent<PlayerController>().SetMovementAllowed(true);
+                    rb.GetComponent<PBPlayerController>().SetMovementAllowed(true);
                 }
             }
         }
@@ -119,10 +119,10 @@ public class SwirlRenderer : MonoBehaviour {
 
                 if (dist <= 2 && !finishing)
                 {
-                    PlayerController pc = rb2d.GetComponent<PlayerController>();
+                    PBPlayerController pc = rb2d.GetComponent<PBPlayerController>();
                     if (pc)
                     {
-                        rb2d.GetComponent<PlayerController>().SetMovementAllowed(false);
+                        rb2d.GetComponent<PBPlayerController>().SetMovementAllowed(false);
                     }
                 }
             }
@@ -145,10 +145,10 @@ public class SwirlRenderer : MonoBehaviour {
         {
             rb2d.drag = 4;
             affectedRigidbodies.Remove(rb2d);
-            PlayerController pc = rb2d.GetComponent<PlayerController>();
+            PBPlayerController pc = rb2d.GetComponent<PBPlayerController>();
             if (pc)
             {
-                rb2d.GetComponent<PlayerController>().SetMovementAllowed(true);
+                rb2d.GetComponent<PBPlayerController>().SetMovementAllowed(true);
             }
         }
     }
