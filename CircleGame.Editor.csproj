@@ -301,12 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OpenSans\License!.txt" />
-    <None Include="Assets\Lobby\Documentation.txt" />
-    <None Include="Assets\Lobby\Instruction.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Gizmos\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\readme.txt" />
-    <None Include="Assets\Source\Shaders\SwirlShader.shader" />
+    <None Include="Assets\ResourceProjects\Lobby\Documentation.txt" />
+    <None Include="Assets\ResourceProjects\Lobby\Instruction.txt" />
+    <None Include="Assets\Source\Art\Shaders\SwirlShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

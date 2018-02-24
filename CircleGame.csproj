@@ -290,23 +290,6 @@
   <ItemGroup>
     <Compile Include="Assets\health.cs" />
     <Compile Include="Assets\LaserSight.cs" />
-    <Compile Include="Assets\Lobby\SampleScenes\Scripts\NetworkAsteroid.cs" />
-    <Compile Include="Assets\Lobby\SampleScenes\Scripts\NetworkGameManager.cs" />
-    <Compile Include="Assets\Lobby\SampleScenes\Scripts\NetworkLobbyHook.cs" />
-    <Compile Include="Assets\Lobby\SampleScenes\Scripts\NetworkSpaceship.cs" />
-    <Compile Include="Assets\Lobby\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
-    <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />
-    <Compile Include="Assets\Lobby\Scripts\EventSystemChecker.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyCountdownPanel.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyHook.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyInfoPanel.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyMainMenu.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyManager.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyPlayer.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyPlayerList.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
-    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
     <Compile Include="Assets\powerupStuff.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\AutoMapper.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Demo\Demo.cs" />
@@ -327,6 +310,23 @@
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchButton.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchMapping.cs" />
     <Compile Include="Assets\ResourceProjects\CarbonInput\Scripts\TouchInput\TouchStick.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\SampleScenes\Scripts\NetworkAsteroid.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\SampleScenes\Scripts\NetworkGameManager.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\SampleScenes\Scripts\NetworkLobbyHook.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\SampleScenes\Scripts\NetworkSpaceship.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\DraggablePanel.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\EventSystemChecker.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyCountdownPanel.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyHook.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyInfoPanel.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyMainMenu.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyManager.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyPlayer.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyPlayerList.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyServerList.cs" />
+    <Compile Include="Assets\ResourceProjects\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
     <Compile Include="Assets\ScoreCounter.cs" />
     <Compile Include="Assets\Source\Scripts\Background.cs" />
     <Compile Include="Assets\Source\Scripts\BulletController.cs" />
@@ -342,12 +342,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OpenSans\License!.txt" />
-    <None Include="Assets\Lobby\Documentation.txt" />
-    <None Include="Assets\Lobby\Instruction.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Demo\AutoMapper\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\Gizmos\readme.txt" />
     <None Include="Assets\ResourceProjects\CarbonInput\readme.txt" />
-    <None Include="Assets\Source\Shaders\SwirlShader.shader" />
+    <None Include="Assets\ResourceProjects\Lobby\Documentation.txt" />
+    <None Include="Assets\ResourceProjects\Lobby\Instruction.txt" />
+    <None Include="Assets\Source\Art\Shaders\SwirlShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
